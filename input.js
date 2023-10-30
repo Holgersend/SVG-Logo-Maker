@@ -1,5 +1,5 @@
 const inquirer = require("inquirer");
-
+const {Circle, Square, Triangle} = require("./shapes");
 
     inquirer
         .prompt([
