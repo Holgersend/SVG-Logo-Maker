@@ -1,8 +1,8 @@
 const inquirer = require("inquirer");
 const {Circle, Square, Triangle} = require("./shapes");
+const fs = require("fs");
 
-    inquirer
-        .prompt([
+    const input = [
             {
                 type: 'input',
                 name: 'text',
@@ -24,4 +24,5 @@ const {Circle, Square, Triangle} = require("./shapes");
                 name: 'shapeColor',
                 message: 'Enter a color keyword or a hexadecimal number for the shape (e.g, blue, yellow, #f33CEFF, etc.)',
             }
-        ]);
+        ];
+
