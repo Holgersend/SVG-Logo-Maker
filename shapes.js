@@ -1,4 +1,4 @@
-class shape {
+class Shape {
     constructor() {
         this.color = '';
     }
