@@ -7,13 +7,13 @@ class shape {
     }
 }
 
-class circle {
+class circle  extends Shape{
     render(){
         return `<circle cx="150" cy="115" r="80" fill="${this.color}" />`;
     };
 };
 
-class Square {
+class Square extends Shape {
     render(){
         return `<rect x="50" height="200" width="200" fill="${this.color}">`
     }
