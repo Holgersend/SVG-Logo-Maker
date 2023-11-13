@@ -56,35 +56,42 @@ const fs = require("fs");
         ];
 
         function generateSVG(data) {
-            let shape
-            switch (data.shape) {
-                case 'Circle':
-                    shape = new shapes.Circle(data.text, data.shapeColor)
-                    break
-                case 'Triangle':
-                    shape = new shapes.Triangle(data.text, data.shapeColor)
-                    break
-                case 'Square':
-                    shape= new shapes.Square(data.text, data.shapeColor)
-                    break
+            const { text, textColor, shape, shapeColor } = data;
+            let svgString = `<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="300" height="200">`;
+        
+            let shapeElement;
+        
+            // Create an instance of the selected shape based on the input
+            if (shape === 'Circle') {
+                shapeElement = new Circle(text, shapeColor);
+            } else if (shape === 'Square') {
+                shapeElement = new Square(text, shapeColor);
+            } else if (shape === 'Triangle') {
+                shapeElement = new Triangle(text, shapeColor);
+            } else {
+                // Handle invalid shape here
+                console.log('Invalid shape selection');
+                return null;
             }
-            
-            let svg = 
-            `<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-            <svg width="200" height="300" xmlns="http://www.w3.org/2000/svg">
-                ${shape.render()}
-                <text x="50%" y="50%" font-size="4.5vw" dominant-baseline="middle" text-anchor="middle" fill="${data.textColor}">${data.text}</text>
-            </svg>`;
+            svgString += shapeElement.render();
+            svgString += `<text x="150" y="125" font-size="60" text-anchor="middle" fill="${textColor}">${text}</text>`;
+
+            // Close the SVG tag
+            svgString += `</svg>`;
+            const svgData = generateSVG(data);
+            console.log(svgData);
 
             fs.writeFile('./examples/logo.svg', svg, (err) => {
                 if (err) throw err;
                 console.log('Generated logo.svg');
             })
         }
+        
+        // Using the init function to call each function in order so the data is collected before the SVG is formed
         function init() {
             inquirer.prompt(input).then(data => {
                 generateSVG(data)
             })
         }
         
-        init()
+        init();
