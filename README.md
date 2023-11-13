@@ -28,5 +28,5 @@ For any additional questions or information, please contact me:
 - Email:  holgersende@gmail.com
 
 ## Links 
-- Repo: (https://github.com/Holgersend/Employee-Tracker) 
+- Repo: (https://github.com/Holgersend/SVG-Logo-Maker) 
 - Video: ()
